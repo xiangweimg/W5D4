@@ -11,9 +11,7 @@ require"byebug"
 #  updated_at :datetime         not null
 #
 class ShortenedUrl < ApplicationRecord
-    def change
     validates :short_url, :long_url, presence: true, uniqueness: true
-    end
     
     after_initialize do |user|
         puts "You have initialized an object!"
