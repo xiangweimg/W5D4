@@ -10,8 +10,25 @@
 #  updated_at    :datetime         not null
 #
 class Course < ApplicationRecord
-    has_many :enrollees,
+    has_many :enrollments,
         primary_key: :id,
         foreign_key: :course_id,
         class_name: :Enrollment
+
+    has_many :enrolled_students,
+        through: :enrollments,
+        source: :student
+    
+    belongs_to :prerequisite,
+        primary_key: :id,
+        foreign_key: :prereq_id,
+        class_name: :Course,
+        optional: true
+#if self-referring, only belongs to
+
+    belongs_to :instructor,
+        primary_key: :id,
+        foreign_key: :instructor_id,
+        class_name: :User 
+
 end
