@@ -11,4 +11,9 @@ class User < ApplicationRecord
     def change
         validates :email, presence: true, uniqueness: true
     end
+
+    has_many :submitted_urls,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :ShortenedUrl
 end
